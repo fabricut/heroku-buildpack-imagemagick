@@ -5,11 +5,13 @@ This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) fo
 
 This one actually works :)
 
+This fork was made for Fabricut's implementation. We needed to handle some _really_ large images and good luck trying to override the policy file for any other installed version. This modifies the policymap file to increase the default limits and actually lowers the version of ImageMagick to play nice with the rest of our setup.
+
 ### Install
 
 In your project root:
 
-`heroku buildpacks:add https://github.com/DuckyTeam/heroku-buildpack-imagemagick  --index 1 --app HEROKU_APP_NAME`
+`heroku buildpacks:add https://github.com/fabricut/heroku-buildpack-imagemagick  --index 1 --app HEROKU_APP_NAME`
 
 "index 1" means that imagemagick will be installed first.
 
