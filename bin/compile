@@ -10,7 +10,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 VENDOR_DIR="$BUILD_DIR/vendor"
 INSTALL_DIR="$VENDOR_DIR/imagemagick"
-IMAGE_MAGICK_VERSION="${IMAGE_MAGICK_VERSION:-7.0.5-10}"
+IMAGE_MAGICK_VERSION="${IMAGE_MAGICK_VERSION:-6.9.7-10}"
 CACHE_FILE="$CACHE_DIR/imagemagick-$IMAGE_MAGICK_VERSION.tar.gz"
 
 if [ ! -f $CACHE_FILE ]; then
@@ -62,6 +62,12 @@ echo "-----> Writing policy file"
 mkdir -p $INSTALL_DIR/etc/ImageMagick
 cat > $INSTALL_DIR/policy.xml <<EOF
 <policymap>
+  <policy domain="resource" name="memory" value="7GiB"/>
+  <policy domain="resource" name="map" value="14GiB"/>
+  <policy domain="resource" name="width" value="500MP"/>
+  <policy domain="resource" name="height" value="500MP"/>
+  <policy domain="resource" name="area" value="800MP"/>
+  <policy domain="resource" name="disk" value="14GiB"/>
   <policy domain="coder" rights="none" pattern="EPHEMERAL" />
   <policy domain="coder" rights="none" pattern="HTTPS" />
   <policy domain="coder" rights="none" pattern="MVG" />
